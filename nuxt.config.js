@@ -11,7 +11,9 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
+    // script: [{ innerHTML: require('lib-flexible/flexible'), type: 'text/javascript', charset: 'utf-8'}],
+    // __dangerouslyDisableSanitizers: ['script']
   },
   /*
   ** Customize the progress bar color
@@ -21,6 +23,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    analyze: true,
+    vendor: [
+      'axios',
+      'lib-flexible'
+    ],
     publicPath: '/assets/',
     /*
     ** Run ESLint on save
@@ -36,10 +43,22 @@ module.exports = {
       }
     },
     postcss: [
-      require('postcss-px2rem')(),
+      require('postcss-px2rem')(
+        {'remUnit':75,'baseDpr':2}
+      ),
       require('autoprefixer')({
         browsers: ['last 3 versions']
       })
     ]
-  }
+  },
+  css: [
+    {
+      src: '~assets/css/reset.less',
+      lang: 'less'
+    },
+    {
+      src: '~assets/css/mixins.less',
+      lang: 'less'
+    }
+  ]
 }
