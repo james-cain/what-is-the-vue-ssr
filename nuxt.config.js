@@ -1,3 +1,6 @@
+const nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+
 module.exports = {
   /*
   ** Headers of the page
@@ -26,13 +29,25 @@ module.exports = {
     analyze: true,
     vendor: [
       'axios',
-      'lib-flexible'
+      'lib-flexible',
+      'mint-ui'
     ],
     publicPath: '/assets/',
+    // plugins: [
+    //   new webpack.optimize.CommonsChunkPlugin({
+    //     name: 'vendor',
+    //     minChunks: function(module) {
+    //       return (
+    //         /node_modules/.test(module.context) &&
+    //         !/\.css$/.test(module.request)
+    //       )
+    //     }
+    //   })
+    // ],
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend (config, { isDev, isClient, isServer }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
@@ -41,6 +56,15 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      // if (isServer) {
+      //   config.externals = [
+      //     nodeExternals({
+      //       whitelist: [
+      //         'mint-ui'
+      //       ]
+      //     })
+      //   ]
+      // }
     },
     postcss: [
       require('postcss-px2rem')(
@@ -49,7 +73,20 @@ module.exports = {
       require('autoprefixer')({
         browsers: ['last 3 versions']
       })
-    ]
+    ],
+    babel: {
+      // presets: [
+      //   ['es2015', {'modules': false}]
+      // ],
+      // plugins: [
+      //   [
+      //     'component', [{
+      //       libraryName: 'mint-ui',
+      //       style: true
+      //     }]
+      //   ]
+      // ]
+    }
   },
   css: [
     {
@@ -60,5 +97,8 @@ module.exports = {
       src: '~assets/css/mixins.less',
       lang: 'less'
     }
+  ],
+  plugins: [
+    '~plugins/mint-ui'
   ]
 }

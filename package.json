@@ -5,7 +5,7 @@
   "author": "james-cain <m15960192140@163.com>",
   "private": true,
   "scripts": {
-    "dev": "HOST=192.168.0.105 PORT=8889 nuxt",
+    "dev": "HOST=192.168.0.111 PORT=8889 nuxt",
     "build": "nuxt build",
     "build-analyze": "nuxt build --analyze",
     "start": "nuxt start",
@@ -19,15 +19,18 @@
     "less": "^3.0.2",
     "less-loader": "^4.1.0",
     "lib-flexible": "^0.3.2",
+    "mint-ui": "^2.2.13",
     "nuxt": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "babel-plugin-component": "^1.1.0",
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
     "postcss-px2rem": "^0.3.0",
-    "webpack-bundle-analyzer": "^2.11.1"
+    "webpack-bundle-analyzer": "^2.11.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }

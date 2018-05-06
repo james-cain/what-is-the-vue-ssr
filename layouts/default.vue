@@ -1,10 +1,37 @@
 <template>
   <div>
+    <form action="" v-on:submit.prevent="submit">
+      <mt-search
+        class="search"
+        v-model="value"
+        cancel-text="取消"
+        placeholder="搜索"
+        @keyup.native.enter="search(value)">
+      </mt-search>
+    </form>
     <nuxt/>
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  data() {
+    return {
+      value: '',
+    }
+  },
+  methods: {
+    search(value) {
+      document.activeElement.blur();
+    },
+    submit() {
+      return false;
+    }
+  }
+}
+</script>
+
+<style lang="less">
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -48,5 +75,19 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.search {
+  &.mint-search {
+    width: 100%;
+    height: 100%;
+    .mint-searchbar {
+      padding: 16px 20px;
+      .mint-searchbar-inner {
+        height: 56px;
+        padding: 8px 12px;
+      }
+    }
+  }
 }
 </style>

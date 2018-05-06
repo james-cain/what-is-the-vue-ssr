@@ -1,11 +1,11 @@
 <template>
   <section class="container">
     <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <div class="container-main">
+    <div class="container-main" v-if="!noUserRecord">
       <div class="container-main__top">
         <div class="container-main__top-left">
-          <div class="container-main__top-left-name">王胜</div>
-          <div class="container-main__top-left-no">EMBA1708</div>
+          <div class="container-main__top-left-name">{{user.UserName}}</div>
+          <div class="container-main__top-left-no">{{user.UserId}}</div>
         </div>
         <div class="container-main__top-right">
           <img src="~assets/img/me.jpeg" alt="avatar" class="avatar" />
@@ -16,11 +16,11 @@
           个人信息
         </div>
         <div class="container-main__middle-desc">
-          <span>职务：ADI医疗健康事业部，亚太区市场总监</span>
-          <span>地区：家乡吉林的北京人</span>
-          <span>专业：电子工程（硕研）</span>
-          <span>电话：13911052089（Wechat）</span>
-          <span>邮箱：13911052089@139.com</span>
+          <span>职务：{{user.UserDuty}}</span>
+          <span>地区：{{user.UserAddress}}</span>
+          <span>专业：{{user.UserProfession}}</span>
+          <span>电话：{{user.UserPhone}}</span>
+          <span>邮箱：{{user.UserAddress}}</span>
         </div>
       </div>
       <div class="container-main__bottom">
@@ -29,7 +29,7 @@
             <span class="title-name">兴趣爱好</span>
           </title-nav>
           <div class="container-main__bottom-nav-desc">
-            跑步 看电影 喝啤酒（能且仅能1瓶！）
+            {{user.UserHobby}}
           </div>
         </div>
         <div class="container-main__bottom-nav">
@@ -38,8 +38,7 @@
           </title-nav>
           <div class="container-main__bottom-nav-desc">
             <ul>
-              <li>电子行业、科技创新、智能硬件</li>
-              <li>此行业10余年跨国公司包括500强的战斗经历</li>
+              <li v-html="user.UserExperience"></li>
             </ul>
           </div>
         </div>
@@ -49,14 +48,8 @@
           </title-nav>
           <div class="container-main__bottom-nav-desc">
             <ul>
-              <li>全球医疗健康事业部。</li>
-              <li>
-                负责整个亚太区的业务发展；<br>
-                团队建设和管理；<br>
-                市场策略的制定和执行；<br>
-                客户支持；<br>
-                市场生态及新业务模式建立；<br>
-                品牌维护及媒体活动；<br>
+              <li>{{user.UserDepartment}}</li>
+              <li v-html="user.UserDeptIntroduce">
               </li>
             </ul>
           </div>
@@ -67,15 +60,7 @@
           </title-nav>
           <div class="container-main__bottom-nav-desc">
             <ul>
-              <li>Analog Devices Inc.（ADI，安纳洛器件），analog.com</li>
-              <li>
-                全球领先的半导体芯片厂商，总部波士顿；<br>
-                50多年历史，进入中国30余载；<br>
-                “超越一切可能”为企业价值观，强调创新；<br>
-                服务全球60000多家客户，全球员工10000余人；<br>
-                35亿美金销售（2016），毛利率大约70%；<br>
-                标准普尔500指数股票之一；<br>
-              </li>
+              <li v-html="user.UserEnterprise"></li>
             </ul>
           </div>
         </div>
@@ -83,16 +68,19 @@
           <title-nav>
             <span class="title-name">校友资源需求及个人价值贡献</span>
           </title-nav>
-          <div class="container-main__bottom-nav-desc">
-            “产融结合”
+          <div class="container-main__bottom-nav-desc" v-html="user.UserContribute">
           </div>
         </div>
       </div>
+    </div>
+    <div class="container-main" v-else>
+      没有对应的搜索结果~
     </div>
   </section>
 </template>
 
 <script>
+import axios from '~/plugins/axios';
 if (process.BROWSER_BUILD) {
   require('lib-flexible')
 }
@@ -100,6 +88,25 @@ import AppLogo from '~/components/AppLogo.vue';
 import TitleNav from '~/components/TitleNav.vue';
 
 export default {
+  fetch({ store }) {
+    return store.dispatch('loadUsers');
+  },
+  // async asyncData() {
+  //   let { data } = await axios.get('/api/user/json');
+  //   console.log(data.data);
+  //   if (data.code !== 0) {
+  //     return { user: {} };
+  //   }
+  //   return { user: data.data };
+  // },
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    },
+    noUserRecord() {
+      return !this.$store.state.currentUser.UserName;
+    }
+  },
   components: {
     AppLogo,
     TitleNav
@@ -127,6 +134,8 @@ export default {
 .container-main {
   flex: 1;
   width: 100%;
+  .flex(center, center);
+  font-size: @font-size-large;
   &__top {
     width: 100%;
     height: 520px;
