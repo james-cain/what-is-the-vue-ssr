@@ -2,7 +2,7 @@
     "apps" : [{
       "name"        : "ssr-server",
       "script"      : "./Application.py",
-      "cwd"         : "/home/cain/what-is-the-tornado-learning-tornado",
+      "cwd"         : "/home/cain/what-is-the-tornado/learning-tornado",
       "watch"       : true
     },{
       "name"       : "ssr-app",
