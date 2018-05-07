@@ -98,6 +98,9 @@ module.exports = {
       lang: 'less'
     }
   ],
+  router: {
+    base: '/app/'
+  },
   plugins: [
     '~plugins/mint-ui'
   ]
