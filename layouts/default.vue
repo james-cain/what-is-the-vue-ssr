@@ -22,6 +22,9 @@ export default {
   },
   methods: {
     search(value) {
+      const key = {};
+      key.keyword = value;
+      this.$store.dispatch('searchUser', key);
       document.activeElement.blur();
     },
     submit() {

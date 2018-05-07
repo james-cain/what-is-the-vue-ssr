@@ -134,7 +134,6 @@ export default {
 .container-main {
   flex: 1;
   width: 100%;
-  .flex(center, center);
   font-size: @font-size-large;
   &__top {
     width: 100%;

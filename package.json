@@ -5,7 +5,7 @@
   "author": "james-cain <m15960192140@163.com>",
   "private": true,
   "scripts": {
-    "dev": "HOST=192.168.0.111 PORT=8889 nuxt",
+    "dev": "HOST=localhost PORT=8891 nuxt",
     "build": "nuxt build",
     "build-analyze": "nuxt build --analyze",
     "start": "nuxt start",
