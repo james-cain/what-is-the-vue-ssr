@@ -1,0 +1,13 @@
+{
+    "apps" : [{
+      "name"        : "ssr-server",
+      "script"      : "./Application.py",
+      "cwd"         : "/home/cain/what-is-the-tornado-learning-tornado",
+      "watch"       : true
+    },{
+      "name"       : "ssr-app",
+      "script"     : "npm",
+      "args"       : "start",
+      "cwd"        : "/home/cain/what-is-the-vue-ssr"
+    }]
+  }
