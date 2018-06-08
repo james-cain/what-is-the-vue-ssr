@@ -8,7 +8,9 @@
           <div class="container-main__top-left-no">{{user.UserId}}</div>
         </div>
         <div class="container-main__top-right">
-          <img src="~assets/img/me.jpeg" alt="avatar" class="avatar" />
+          <!-- <img src="~static/user1.png" alt="avatar" class="avatar" /> -->
+          <img :src="'/assets/' + user.UserAvatar" alt="头像" class="avatar" />
+          <!-- <img :src="'static/' + user.UserAvatar" alt="avatar" class="avatar" /> -->
         </div>
       </div>
       <div class="container-main__middle">
@@ -16,11 +18,13 @@
           个人信息
         </div>
         <div class="container-main__middle-desc">
-          <span>职务：{{user.UserDuty}}</span>
-          <span>地区：{{user.UserAddress}}</span>
-          <span>专业：{{user.UserProfession}}</span>
-          <span>电话：{{user.UserPhone}}</span>
-          <span>邮箱：{{user.UserAddress}}</span>
+          <img :src="'/assets/' + user.UserQrcode" alt="二维码" class="qrcode" />
+          <!-- <img src="~static/userqrcode1.png" alt="qrcode" class="qrcode" /> -->
+          <div class="container-main__middle-desc-content">
+            <div>公司：{{user.UserCompany}}</div>
+            <div>职务：{{user.UserDuty}}</div>
+            <div>常驻：{{user.UserLive}}</div>
+          </div>
         </div>
       </div>
       <div class="container-main__bottom">
@@ -34,7 +38,7 @@
         </div>
         <div class="container-main__bottom-nav">
           <title-nav>
-            <span class="title-name">行业及经历</span>
+            <span class="title-name">从事行业</span>
           </title-nav>
           <div class="container-main__bottom-nav-desc">
             <ul>
@@ -44,13 +48,11 @@
         </div>
         <div class="container-main__bottom-nav">
           <title-nav>
-            <span class="title-name">所在部门及介绍</span>
+            <span class="title-name">本人所在部门及介绍</span>
           </title-nav>
           <div class="container-main__bottom-nav-desc">
             <ul>
               <li>{{user.UserDepartment}}</li>
-              <li v-html="user.UserDeptIntroduce">
-              </li>
             </ul>
           </div>
         </div>
@@ -66,7 +68,7 @@
         </div>
         <div class="container-main__bottom-nav">
           <title-nav>
-            <span class="title-name">校友资源需求及个人价值贡献</span>
+            <span class="title-name">校友资源需求</span>
           </title-nav>
           <div class="container-main__bottom-nav-desc" v-html="user.UserContribute">
           </div>
@@ -158,7 +160,7 @@ export default {
       width: 50%;
       .flex(flex-start, center);
       .avatar {
-        height: 450px;
+        height: auto;
         width: 300px;
         box-shadow: 6px 6px 40px #888;
       }
@@ -176,10 +178,22 @@ export default {
       border-bottom: 1px solid #fff;
     }
     &-desc {
-      padding: 10px 40px;
-      .flex(flex-start, flex-start);
+      padding: 10px 0px;
+      .flex;
       min-height: 200px;
-      flex-direction: column;
+      
+      .qrcode {
+        margin: 0 20px;
+        height: 150px;
+        width: 150px;
+      }
+      &-content {
+        flex: 1;
+        text-align: left;
+        // float: left;
+        // flex-direction: column;
+        // .flex(flex-start, flex-start);
+      }
       span {
         line-height: 32px;
       }

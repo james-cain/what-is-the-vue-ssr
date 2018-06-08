@@ -32,7 +32,7 @@ module.exports = {
       'lib-flexible',
       'mint-ui'
     ],
-    publicPath: '/assets/',
+    // publicPath: '/assets/',
     // plugins: [
     //   new webpack.optimize.CommonsChunkPlugin({
     //     name: 'vendor',
