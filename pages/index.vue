@@ -74,6 +74,8 @@
           </div>
         </div>
       </div>
+      <img src="~assets/img/arrow-left.png" class="switch-oper prev" @click="prev" alt=""/>
+      <img src="~assets/img/arrow-right.png" class="switch-oper next" @click="next" alt=""/>
     </div>
     <div class="container-main" v-else>
       没有对应的搜索结果~
@@ -109,6 +111,14 @@ export default {
       return !this.$store.state.currentUser.UserName;
     }
   },
+  methods: {
+    prev() {
+      this.$store.dispatch('prev');
+    },
+    next() {
+      this.$store.dispatch('next');
+    }
+  },
   components: {
     AppLogo,
     TitleNav
@@ -130,6 +140,20 @@ export default {
   .logo {
     height: 100px;
     padding: 10px;
+  }
+}
+.switch-oper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  position: fixed;
+  top: 45%;
+  &.prev {
+    left: 10px;
+  }
+  &.next {
+    right: 10px;
   }
 }
 
