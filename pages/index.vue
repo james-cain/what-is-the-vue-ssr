@@ -9,7 +9,7 @@
         </div>
         <div class="container-main__top-right">
           <!-- <img src="~static/user1.png" alt="avatar" class="avatar" /> -->
-          <img :src="'/assets/' + user.UserAvatar" alt="头像" class="avatar" />
+          <img :src="'/assets/avatar/' + user.UserAvatar" alt="头像" class="avatar" />
           <!-- <img :src="'static/' + user.UserAvatar" alt="avatar" class="avatar" /> -->
         </div>
       </div>
@@ -18,7 +18,7 @@
           个人信息
         </div>
         <div class="container-main__middle-desc">
-          <img :src="'/assets/' + user.UserQrcode" alt="二维码" class="qrcode" />
+          <img :src="'/assets/qrcode/' + user.UserQrcode" alt="二维码" class="qrcode" />
           <!-- <img src="~static/userqrcode1.png" alt="qrcode" class="qrcode" /> -->
           <div class="container-main__middle-desc-content">
             <div>公司：{{user.UserCompany}}</div>
