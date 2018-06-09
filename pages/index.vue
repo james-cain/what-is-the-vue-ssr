@@ -18,9 +18,9 @@
           个人信息
         </div>
         <div class="container-main__middle-desc">
-          <img :src="'/assets/qrcode/' + user.UserQrcode" alt="二维码" class="qrcode" />
+          <img :src="'/assets/qrcode/' + user.UserQrcode" alt="二维码" class="qrcode" v-if="user.UserQrcode" />
           <!-- <img src="~static/userqrcode1.png" alt="qrcode" class="qrcode" /> -->
-          <div class="container-main__middle-desc-content">
+          <div class="container-main__middle-desc-content" :style="{'marginLeft': user.UserQrcode ? '' : '50px'}">
             <div>公司：{{user.UserCompany}}</div>
             <div>职务：{{user.UserDuty}}</div>
             <div>常驻：{{user.UserLive}}</div>
